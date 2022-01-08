@@ -4,7 +4,7 @@ const {
   PauseTimeCounter,
   ResumeTimeCounter,
   ResetTimeCounter,
-} = require("./functions/counter.js");
+} = require("./utils/counter.js");
 /**
  * @param {vscode.ExtensionContext} context
  */

@@ -28,6 +28,9 @@ function activate(context) {
   timeCounter(stausBarItem);
 }
 
+function deactivate() {}
+
 module.exports = {
   activate,
+  deactivate,
 };

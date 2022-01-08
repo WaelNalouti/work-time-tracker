@@ -17,19 +17,23 @@ function activate(context) {
   const CMD_resumeWorkTimeTracker = "work-time-tracker.resumeTimer";
   const CMD_resetWorkTimeTracker = "work-time-tracker.resetTimer";
 
-  let activeCMD = "START_NOT_ACTIVE";
+  let activeCMD = "NOT_ACTIVE";
 
   // Starts the time counter whenever the start command gets executed
   let StartCMD = vscode.commands.registerCommand(
     CMD_startWorkTimeTracker,
     function () {
-      if (activeCMD === "START_NOT_ACTIVE") {
+      if (activeCMD === "NOT_ACTIVE") {
         vscode.window.showInformationMessage(
           `💪🤖 Starting working session timer`
         );
-        activeCMD = "START_ACTIVE";
+        activeCMD = "ACTIVE";
         StartTimeCounter(stausBarItem);
-      } else return;
+      } else if (activeCMD === "ACTIVE") {
+        vscode.window.showWarningMessage(
+          `👾 Working session timer already been started!`
+        );
+      }
     }
   );
   context.subscriptions.push(StartCMD);
@@ -38,12 +42,20 @@ function activate(context) {
   let PauseCMD = vscode.commands.registerCommand(
     CMD_pauseWorkTimeTracker,
     function () {
-      if (activeCMD === "START_ACTIVE") {
+      if (activeCMD === "ACTIVE") {
         vscode.window.showInformationMessage(
           `🤖🤙 Working session timer paused`
         );
         activeCMD = "PAUSE";
         PauseTimeCounter(stausBarItem);
+      } else if (activeCMD === "NOT_ACTIVE") {
+        vscode.window.showErrorMessage(
+          `👾 No active working session timer to pause!`
+        );
+      } else {
+        vscode.window.showWarningMessage(
+          `👾 Working session timer alredy been paused!`
+        );
       }
     }
   );
@@ -57,8 +69,16 @@ function activate(context) {
         vscode.window.showInformationMessage(
           `👌🤖 Working session timer resumed`
         );
-        activeCMD = "RESUME";
+        activeCMD = "ACTIVE";
         ResumeTimeCounter(stausBarItem);
+      } else if (activeCMD === "ACTIVE") {
+        vscode.window.showWarningMessage(
+          `👾 Working session timer already running!`
+        );
+      } else if (activeCMD === "NOT_ACTIVE") {
+        vscode.window.showErrorMessage(
+          `👾 No active Working session timer to resume!`
+        );
       }
     }
   );
@@ -68,10 +88,12 @@ function activate(context) {
   let ResetCMD = vscode.commands.registerCommand(
     CMD_resetWorkTimeTracker,
     function () {
-      if ((activeCMD === "RESUME") | (activeCMD === "START_ACTIVE")) {
+      if ((activeCMD === "ACTIVE") | (activeCMD === "PAUSE")) {
         vscode.window.showInformationMessage(`👋🤖 Reseting timer`);
-        activeCMD = "REST";
+        activeCMD = "NOT_ACTIVE";
         ResetTimeCounter(stausBarItem);
+      } else {
+        vscode.window.showInformationMessage(`👾 Timer is already 00:00:00 `);
       }
     }
   );

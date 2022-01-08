@@ -10,15 +10,31 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:work-time-tracker.startTimer"
+        "onCommand:work-time-tracker.startTimer",
+        "onCommand:work-time-tracker.pauseTimer",
+        "onCommand:work-time-tracker.resumeTimer",
+        "onCommand:work-time-tracker.resetTimer"
 	],
 	"main": "./src/extension.js",
 	"contributes": {
-		"commands": [{
-            "command": "work-time-tracker.startTimer",
-            "title": "Start work-session timer"
-
-		}]
+		"commands": [
+			{
+				"command": "work-time-tracker.startTimer",
+				"title": "Start work-session timer"	
+			},
+			{
+				"command": "work-time-tracker.pauseTimer",
+				"title": "Pause work-session timer"	
+			},
+			{
+				"command": "work-time-tracker.resumeTimer",
+				"title": "Resume work-session timer"	
+			},
+			{
+				"command": "work-time-tracker.resetTimer",
+				"title": "Reset work-session timer"	
+			}
+		]
 	},
 	"scripts": {
 		"lint": "eslint .",

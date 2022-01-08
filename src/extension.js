@@ -49,7 +49,7 @@ function activate(context) {
   );
   context.subscriptions.push(PauseCMD);
 
-  // Resume the time counter whenever the pause command gets executed
+  // Resume the time counter whenever the resume command gets executed
   let ResumeCMD = vscode.commands.registerCommand(
     CMD_resumeWorkTimeTracker,
     function () {
@@ -64,7 +64,7 @@ function activate(context) {
   );
   context.subscriptions.push(ResumeCMD);
 
-  // Reset the time counter whenever the pause command gets executed
+  // Reset the time counter whenever the reset command gets executed
   let ResetCMD = vscode.commands.registerCommand(
     CMD_resetWorkTimeTracker,
     function () {
@@ -86,6 +86,7 @@ function activate(context) {
   context.subscriptions.push(stausBarItem);
 }
 
+//Cleanup function
 function deactivate() {}
 
 module.exports = {

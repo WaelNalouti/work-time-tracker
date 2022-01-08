@@ -10,13 +10,13 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:work-time-tracker.helloWorld"
+        "onCommand:work-time-tracker.startTimer"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [{
-            "command": "work-time-tracker.helloWorld",
-            "title": "Hello World"
+            "command": "work-time-tracker.startTimer",
+            "title": "Start work-session timer"
 
 		}]
 	},

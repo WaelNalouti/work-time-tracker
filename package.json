@@ -12,7 +12,7 @@
 	"activationEvents": [
         "onCommand:work-time-tracker.startTimer"
 	],
-	"main": "./extension.js",
+	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [{
             "command": "work-time-tracker.startTimer",

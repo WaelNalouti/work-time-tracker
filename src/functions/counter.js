@@ -9,7 +9,7 @@ let timeSpent = "00:00:00";
 
 let interval;
 
-//Start the timer from 00:00:00
+//Start the timer at 00:00:00
 function StartTimeCounter(stausBarItem) {
   function IncrementTime() {
     seconds++;
